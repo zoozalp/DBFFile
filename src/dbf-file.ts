@@ -142,6 +142,9 @@ async function openDBF(path: string, opts?: OpenOptions): Promise<DBFFile> {
                 size: buffer.readUInt8(0x10),
                 decimalPlaces: buffer.readUInt8(0x11)
             };
+            if (field.type === "C" && field.decimalPlaces) {
+                field.size = field.decimalPlaces * 256 + field.size;
+            }
             if (options.readMode !== 'loose') {
                 validateFieldDescriptor(field, fileVersion);
                 assert(fields.every(f => f.name !== field.name), `Duplicate field name: '${field.name}'`);

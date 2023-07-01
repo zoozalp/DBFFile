@@ -36,7 +36,8 @@ export function validateFieldDescriptor(field: FieldDescriptor, fileVersion: num
     const memoSize = fileVersion == 0x30 ? 4 : 10;
     if (typeof size !== 'number') throw new Error('Size must be a number');
     if (size < 1) throw new Error('Field size is too small (minimum is 1)');
-    if (type === 'C' && size > 255) throw new Error('Field size is too large (maximum is 255)');
+    //if (type === 'C' && size > 255) throw new Error('Field size is too 
+large (maximum is 255)');
     if (type === 'N' && size > 20) throw new Error('Field size is too large (maximum is 20)');
     if (type === 'F' && size > 20) throw new Error('Field size is too large (maximum is 20)');
     if (type === 'L' && size !== 1) throw new Error('Invalid field size (must be 1)');
